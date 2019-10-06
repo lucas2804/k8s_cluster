@@ -1,0 +1,17 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: docker-ingress
+spec:
+  tls:
+    - hosts:
+        - sslexample.foo.com
+      secretName: registry-cert-secret
+  rules:
+    - host: sslexample.foo.com
+      http:
+        paths:
+          - path: /
+            backend:
+              serviceName: registry
+              servicePort: 5000

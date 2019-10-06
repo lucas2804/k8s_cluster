@@ -1,0 +1,13 @@
+apiVersion: v1
+
+kind: Pod
+
+metadata:
+  name: redis
+  labels:
+    app: myapp
+
+spec:
+  containers:
+    - name: redis123
+      image: nginx
