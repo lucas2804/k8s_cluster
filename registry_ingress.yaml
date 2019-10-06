@@ -3,15 +3,19 @@ kind: Ingress
 metadata:
   name: docker-ingress
 spec:
-  tls:
-    - hosts:
-        - sslexample.foo.com
-      secretName: registry-cert-secret
+#  tls:
+#    - hosts:
+#        - kubia.example.com
+#      secretName: tls-secret
   rules:
-    - host: sslexample.foo.com
+    - host: kubia.example.com
       http:
         paths:
+#          - path: /
+#            backend:
+#              serviceName: docker-registry
+#              servicePort: 5000
           - path: /
             backend:
-              serviceName: registry
-              servicePort: 5000
+              serviceName: kubia-svc
+              servicePort: 80
