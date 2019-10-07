@@ -2,20 +2,23 @@ apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
   name: docker-ingress
+  annotations:
+    ingress.kubernetes.io/rewrite-target: /
 spec:
-#  tls:
-#    - hosts:
-#        - kubia.example.com
-#      secretName: tls-secret
+  tls:
+    - hosts:
+        - kubia.example.com
+      secretName: tls-secret
   rules:
     - host: kubia.example.com
       http:
         paths:
-#          - path: /
-#            backend:
-#              serviceName: docker-registry
-#              servicePort: 5000
-          - path: /
+          - path: /kubia
             backend:
               serviceName: kubia-svc
               servicePort: 80
+          - path: /
+            backend:
+              serviceName: docker-registry
+              servicePort: 5000
+
